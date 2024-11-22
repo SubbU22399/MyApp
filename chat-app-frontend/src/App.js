@@ -31,7 +31,7 @@ function App() {
     <Router>
       <Routes>
         <Route
-          path="/login"
+          path="/"
           element={isLoggedIn ? <Navigate to="/chat" /> : <Login />}
         />
         <Route
@@ -43,7 +43,7 @@ function App() {
                 <OnlineUsers />
               </div>
             ) : (
-              <Navigate to="/login" />
+              <Navigate to="/" />
             )
           }
         />

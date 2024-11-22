@@ -15,7 +15,7 @@ const Header = (props) => {
     socket.disconnect();
 
     // Redirect to login page
-    navigate('/login');
+    navigate('/');
    
   };
 
