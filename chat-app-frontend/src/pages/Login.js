@@ -17,7 +17,9 @@ const Login = () => {
 
       // Navigate to chat
       navigate("/chat");
-      
+
+      window.location.reload();
+
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

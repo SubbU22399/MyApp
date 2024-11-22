@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'https://xox-74vw.onrender.com' || 'http://localhost:5000/api',
-});
+const baseURL =
+  process.env.REACT_APP_BACKEND_URL || (process.env.NODE_ENV === 'production'
+    ? (() => { throw new Error("REACT_APP_BACKEND_URL is not defined in production"); })()
+    : 'http://localhost:5000/api');
+
+const api = axios.create({ baseURL });
 
 export default api;
