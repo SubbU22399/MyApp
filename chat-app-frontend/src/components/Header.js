@@ -16,6 +16,7 @@ const Header = (props) => {
 
     // Redirect to login page
     navigate('/');
+    window.location.reload();
    
   };
 
