@@ -3,49 +3,45 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const uploadRouter = require('./routes/upload');
 
-// Initialize environment variables
-dotenv.config();
-
-// Initialize app
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: '*',
-  },
-});
+const io = new Server(server, { cors: { origin: '*' } });
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/uploads', express.static('uploads'));
 
-// Routes
-app.use('/api/upload', uploadRouter);
-
-// Online users map
+// In-memory user storage
 const onlineUsers = new Map();
 
+// Endpoint to handle login
+app.post('/api/login', (req, res) => {
+  const { username } = req.body;
+
+  // Check if the username is already taken
+  const isTaken = Array.from(onlineUsers.values()).some(user => user.name === username);
+  if (isTaken) {
+    return res.status(400).json({ message: 'Username is already taken.' });
+  }
+
+  const user = { id: `user-${Date.now()}`, name: username };
+  res.status(200).json(user);
+});
+
+// Socket.IO events
 io.on('connection', (socket) => {
   console.log('New client connected:', socket.id);
 
-  // Handle user login
+  // Handle user login and store their data
   socket.on('user-login', (user) => {
     onlineUsers.set(socket.id, user);
     io.emit('online-users', Array.from(onlineUsers.values()));
   });
 
-  // Handle global chat messages
-  socket.on('global-message', (message) => {
-    io.emit('global-message', message);
-  });
-
-  // Handle private messages
-  socket.on('private-message', ({ room, message }) => {
-    socket.to(room).emit('private-message', message);
+  // Handle global messaging
+  socket.on('global-message', (msg) => {
+    io.emit('global-message', msg); // Broadcast the message to all clients
   });
 
   // Handle disconnect

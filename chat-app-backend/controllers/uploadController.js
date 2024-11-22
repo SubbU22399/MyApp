@@ -1,5 +1,5 @@
-const cloudinary = require('cloudinary').v2;
-const fs = require('fs');
+const cloudinary = require("cloudinary").v2;
+const fs = require("fs");
 
 // Configure Cloudinary
 cloudinary.config({
@@ -15,13 +15,13 @@ exports.uploadImage = async (req, res) => {
 
     // Upload to Cloudinary
     const result = await cloudinary.uploader.upload(filePath);
-    
+
     // Delete local file after upload
     fs.unlinkSync(filePath);
 
     res.status(200).json({ url: result.secure_url });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Image upload failed' });
+    res.status(500).json({ message: "Image upload failed" });
   }
 };

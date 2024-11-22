@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import socket from '../services/socket';
 
 const OnlineUsers = () => {
@@ -15,11 +15,11 @@ const OnlineUsers = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-gray-100 rounded shadow-md">
-      <h2 className="text-xl font-bold mb-4">Online Users</h2>
+    <div className="p-4 bg-gray-100 rounded shadow-md mr-1 col-span-1">
+      <h2 className="text-xl font-bold mb-4 text-cyan-400">Online Users</h2>
       <ul className="list-disc pl-5">
         {onlineUsers.map((user, index) => (
-          <li key={index} className="mb-1">{user.name}</li>
+          <li key={index} className="mb-1 text-indigo-600">{user.name}</li>
         ))}
       </ul>
     </div>
