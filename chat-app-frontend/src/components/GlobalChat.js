@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import socket from "../services/socket";
+import Header from "./Header";
 
 const GlobalChat = () => {
   const [messages, setMessages] = useState([]);
@@ -33,8 +34,11 @@ const GlobalChat = () => {
   };
 
   return (
-    <div className="p-4 bg-gray-100 rounded shadow-md mt-0 col-span-2 grid grid-rows-8 grid-flow-col">
-        <h2 className="text-xl font-bold mb-4 ">Global Chat</h2>
+    <div className="p-4 bg-gray-100 rounded shadow-md mt-0 col-span-2 grid grid-rows-8 grid-flow-col mr-2">
+        <div className="profile text-xl font-bold mb-1 text-green-500">
+          <Header user={user?.name} />
+        </div>
+        
         <div className="h-100 overflow-y-scroll mb-4 bg-white p-4 rounded shadow-inner row-span-6">
           {messages.map((msg, index) => (
             <p key={index} className="mb-2 text-black bottom-0">
