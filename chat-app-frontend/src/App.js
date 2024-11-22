@@ -15,23 +15,23 @@ function App() {
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("chatUser") !== null;
-    if (!isLoggedIn) {
-      const user = {
-        id: `user-${Math.floor(Math.random() * 10000)}`,
-        name: `User-${Math.floor(Math.random() * 10000)}`,
-      };
-      localStorage.setItem("chatUser", JSON.stringify(user));
-      socket.emit("user-login", user);
-    } else {
+    // if (!isLoggedIn) {
+    //   const user = {
+    //     id: `user-${Math.floor(Math.random() * 10000)}`,
+    //     name: `User-${Math.floor(Math.random() * 10000)}`,
+    //   };
+    //   localStorage.setItem("chatUser", JSON.stringify(user));
+    //   socket.emit("user-login", user);
+    // } else {
       socket.emit("user-login", JSON.parse(isLoggedIn));
-    }
+    // }
   }, []);
 
   return (
     <Router>
       <Routes>
         <Route
-          path="/"
+          path="/login"
           element={isLoggedIn ? <Navigate to="/chat" /> : <Login />}
         />
         <Route
@@ -43,7 +43,7 @@ function App() {
                 <OnlineUsers />
               </div>
             ) : (
-              <Login />
+              <Navigate to="/login" />
             )
           }
         />

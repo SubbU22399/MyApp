@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await api.post("/", { username });
+      const response = await api.post("/login", { username });
       const user = response.data;
 
       // Save user to localStorage

@@ -6,7 +6,9 @@ const Header = (props) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Remove user from localStorage
+
+    if (window.confirm('Are you sure you want to logout?')) {
+        // Remove user from localStorage
     localStorage.removeItem('chatUser');
 
     // Disconnect from Socket.IO
@@ -14,7 +16,10 @@ const Header = (props) => {
 
     // Redirect to login page
     navigate('/login');
+   
   };
+
+}
 
   return (
     <div className="flex justify-between items-center p-4 bg-blue-500 text-white">
