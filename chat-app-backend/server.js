@@ -28,6 +28,17 @@ app.post('/api/login', (req, res) => {
   const user = { id: `user-${Date.now()}`, name: username };
   res.status(200).json(user);
 });
+// Endpoint to handle logout
+app.post('/api/logout', (req, res) => {
+  const { id } = req.body;
+  onlineUsers.delete(id);
+  res.status(200).json({ message: 'Logged out successfully.' });
+  });
+  // Endpoint to handle chat page
+  app.get('/api/chat', (req, res) => {
+    res.status(200).json({ message: 'Chat page' });
+    });
+  
 
 // Socket.IO events
 io.on('connection', (socket) => {
