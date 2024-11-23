@@ -20,7 +20,7 @@ const OnlineUsers = () => {
         <h2 className="text-xl font-bold mb-4 text-cyan-400">Online Users</h2>
         <ul className="list-disc pl-5">
           {onlineUsers.map((user, index) => (
-            <li key={index} className="mb-1 text-indigo-600">
+            <li key={index} className="mb-1">
               {user?.name}
             </li>
           ))}
