@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const Login = () => {
@@ -16,9 +16,9 @@ const Login = () => {
       localStorage.setItem("chatUser", JSON.stringify(user));
 
       // Navigate to chat
-      navigate("/chat");
+    //   navigate("/chat");
+      <Navigate to="/chat" />
 
-      window.location.reload();
 
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
