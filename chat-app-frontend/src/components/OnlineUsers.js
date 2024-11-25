@@ -7,6 +7,7 @@ const OnlineUsers = () => {
   useEffect(() => {
     socket.on("online-users", (users) => {
       setOnlineUsers(users);
+      console.log(onlineUsers);
     });
 
     return () => {
