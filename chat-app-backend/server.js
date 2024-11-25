@@ -35,9 +35,9 @@ app.post('/api/logout', (req, res) => {
   res.status(200).json({ message: 'Logged out successfully.' });
   });
   // Endpoint to handle chat page
-  app.get('/api/chat', (req, res) => {
-    res.status(200).json({ message: 'Chat page' });
-    });
+  // app.get('/api/chat', (req, res) => {
+  //   res.status(200).json({ message: 'Chat page' });
+  //   });
   
 
 // Socket.IO events
