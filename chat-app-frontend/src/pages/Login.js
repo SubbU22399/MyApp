@@ -18,6 +18,7 @@ const Login = () => {
       // Navigate to chat
       navigate("/chat");
       // <Navigate to="/chat" />
+      window.location.reload();
 
 
     } catch (err) {
